@@ -15,6 +15,7 @@ function App() {
     dispatch(changeMode())
   }
   const toggleMenu = useSelector(store => store.mode.modeStatus)
+  console.log(store)
   const getUserInput = (e) =>{
     setInput(e.target.value)
   }
