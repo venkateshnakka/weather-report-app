@@ -17,8 +17,7 @@
   padding: 10px;
   border-radius: 10px;
   border: none;
-  width: 350px;
-  max-width: 350px;
+  width: 250px;
  
 }
 .weather-image {
@@ -35,4 +34,9 @@
 .weather-main-heading {
   margin: 0px;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+@media (max-width:768px){
+  .weather-btn {
+    margin-top: 20px;
+  }
 }

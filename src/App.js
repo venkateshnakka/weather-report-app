@@ -8,6 +8,7 @@ import DisplayWeather from './components/DisplayWeather';
 function App() {
   let [input, setInput] = useState("")
   let [weather, setWeather] = useState(null)
+  let [error, setError] = useState(null);
   const dispatch = useDispatch()
   
   const updateMode = ()=>{
@@ -25,7 +26,8 @@ function App() {
       
     }
     catch(err){
-      console.log(err.message)
+      setError(err.message)
+      
     }
 
   }
@@ -37,7 +39,7 @@ function App() {
       
     }
     catch(err){
-      console.log(err.message)
+      setError(err.message)
     }
 
   }
@@ -45,13 +47,9 @@ function App() {
     const trimmedInput = input.trim();
     const zipCodePattern = /^\d{5}(?:[-\s]\d{4})?$|^\d{6}$/;
     if (zipCodePattern.test(trimmedInput)) {
-      // console.log("it is zip code")
-      // return 'zipCode';
       getWeatherDetailsByZipCode()
     } 
     else {
-      // console.log("city name")
-      // return 'cityName';
       getWeatherDetailsByCityname()
     }
   }
@@ -62,14 +60,16 @@ function App() {
   return (
     <div style={appStyles} className='weather-main-container'>
       <button className= "mode-toggle-btn" onClick={updateMode}>{toggleMenu?"Light Mode":"Dark Mode"}</button>
+      {error && <p className='error-message'>{error}</p>}
 
       <img src='https://static.vecteezy.com/system/resources/previews/022/538/958/original/3d-rendering-rain-with-cloud-and-sun-icon-3d-render-weather-sun-with-rain-drops-and-cloud-rain-with-cloud-and-sun-png.png' alt='Weather icon'  className='weather-image'/>
 
       <h1 className='weather-main-heading'>Discover the Weather in Your City</h1>
       <p>Enter the city name or ZIP code to get the weather details</p>
-      <input type='text' className='weather-input' placeholder='Enter the city name or ZIP code' onChange={getUserInput}/>
+      <input type='text' className='weather-input' placeholder='Enter the city name or ZIP code' onChange={getUserInput} required/>
       <button onClick={getWeatherDetails} className='weather-btn'>Get Weather Details</button>
       <DisplayWeather weatherData={weather}/>
+      
     </div>
   );
 }

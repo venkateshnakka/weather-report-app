@@ -18,7 +18,7 @@ const formatDateTime = (timestamp, timezone) => {
           <p>Date and Time: {formatDateTime(weatherData?.dt, weatherData?.timezone)}</p>
           <p>Humidity: {weatherData?.main?.humidity}%</p>
           <p>Wind Speed: {weatherData?.wind?.speed} m/s</p>
-          <p>Description: {weatherData?.weather[0]?.description}</p>
+          <p>Description: {weatherData?.weather?.[0]?.description}</p>
         </div>
       )}
     </div>

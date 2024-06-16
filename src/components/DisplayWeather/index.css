@@ -10,3 +10,8 @@
 .weather-details {
     padding:0px 60px;
 }
+@media (max-width:768px) {
+    .weather-details {
+        padding: 0px;
+    }
+}
