@@ -21,12 +21,16 @@ function App() {
   const getWeatherDetailsByCityname = async () =>{
     try{
       const response = await fetch('https://api.openweathermap.org/data/2.5/weather?q='+input+'&appid=e6dde2de77261aceeb51dddfac5ff0d4')
+      if (!response.ok) {
+        throw new Error('City not found. Please enter a valid city name.');
+      }
       const weatherDetails = await response.json()
       setWeather(weatherDetails)
-      
+      setError("")
     }
     catch(err){
-      setError(err.message)
+      setError(err.message);
+      setWeather(null)
       
     }
 
@@ -34,12 +38,17 @@ function App() {
   const  getWeatherDetailsByZipCode = async () =>{
     try{
       const response = await fetch('https://api.openweathermap.org/data/2.5/weather?zip='+input+',IN&appid=e6dde2de77261aceeb51dddfac5ff0d4')
+      if(!response.ok){
+        throw new Error('ZIP code not found. Please enter a valid ZIP code.')
+      }
       const weatherDetails = await response.json()
       setWeather(weatherDetails)
+      setError("")
       
     }
     catch(err){
       setError(err.message)
+      setWeather(null)
     }
 
   }
@@ -60,7 +69,7 @@ function App() {
   return (
     <div style={appStyles} className='weather-main-container'>
       <button className= "mode-toggle-btn" onClick={updateMode}>{toggleMenu?"Light Mode":"Dark Mode"}</button>
-      {error && <p className='error-message'>{error}</p>}
+      
 
       <img src='https://static.vecteezy.com/system/resources/previews/022/538/958/original/3d-rendering-rain-with-cloud-and-sun-icon-3d-render-weather-sun-with-rain-drops-and-cloud-rain-with-cloud-and-sun-png.png' alt='Weather icon'  className='weather-image'/>
 
@@ -68,6 +77,7 @@ function App() {
       <p>Enter the city name or ZIP code to get the weather details</p>
       <input type='text' className='weather-input' placeholder='Enter the city name or ZIP code' onChange={getUserInput} required/>
       <button onClick={getWeatherDetails} className='weather-btn'>Get Weather Details</button>
+      {error && <h3 className='error-message'>{error}</h3>}
       <DisplayWeather weatherData={weather}/>
       
     </div>

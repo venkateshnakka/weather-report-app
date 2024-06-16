@@ -35,6 +35,9 @@
   margin: 0px;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+.error-message {
+  color: red;
+}
 @media (max-width:768px){
   .weather-btn {
     margin-top: 20px;
