@@ -15,13 +15,18 @@ function App() {
   const getWeatherDetails = () =>{
     
   }
+  const appStyles = {
+    backgroundColor: toggleMenu ? ' #3C3C3C' : '#d7eaf3',
+    color: toggleMenu ? ' #fff' : '#000'
+  };
   return (
-    <div className="App">
-      <button onClick={updateMode}>toggleMode</button>
-      <h1>Discover the Weather in Your City</h1>
+    <div style={appStyles} className='weather-main-container'>
+      <button className= "mode-toggle-btn" onClick={updateMode}>{toggleMenu?"Light Mode":"Dark Mode"}</button>
+      <img src='https://static.vecteezy.com/system/resources/previews/022/538/958/original/3d-rendering-rain-with-cloud-and-sun-icon-3d-render-weather-sun-with-rain-drops-and-cloud-rain-with-cloud-and-sun-png.png' alt='Weather image'  className='weather-image'/>
+      <h1 className='weather-main-heading'>Discover the Weather in Your City</h1>
       <p>Enter the city name or ZIP code to get the weather details</p>
-      <input type='text' placeholder='Enter the city name or ZIP code'/>
-      <button onClick={getWeatherDetails}>Get Weather Details</button>
+      <input type='text' className='weather-input' placeholder='Enter the city name or ZIP code'/>
+      <button onClick={getWeatherDetails} className='weather-btn'>Get Weather Details</button>
     </div>
   );
 }
